@@ -1,0 +1,2 @@
+"use strict";document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("form input").forEach(function(e,t){var n=document.createElement("label");n.classList.add("field-label"),e.id||(e.id="input-".concat(t,"-").concat(e.name||"field")),n.htmlFor=e.id,n.textContent=e.name||"Field";var a=e.parentElement;a&&a.prepend(n);var d=e.name?e.name.charAt(0).toUpperCase()+e.name.slice(1):"Field";e.placeholder=d})});
+//# sourceMappingURL=js_task_fix_form_DOM.517ae362.js.map
