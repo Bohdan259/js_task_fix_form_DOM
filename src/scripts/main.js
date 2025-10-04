@@ -1,33 +1,30 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const fields = document.querySelectorAll('.field');
+  const inputs = document.querySelectorAll('form input');
 
-  function addLabel(parentInput) {
-    const inputs = Array.from(parentInput.querySelectorAll('input'));
+  inputs.forEach((input, index) => {
     const label = document.createElement('label');
 
     label.classList.add('field-label');
 
-    inputs.forEach((input) => {
-      label.htmlFor = input.id;
-      label.textContent = input.name;
+    if (!input.id) {
+      input.id = `input-${index}-${input.name || 'field'}`;
+    }
+
+    label.htmlFor = input.id;
+    label.textContent = input.name || 'Field';
+
+    const parentInput = input.parentElement;
+
+    if (parentInput) {
       parentInput.prepend(label);
-    });
-  }
+    }
 
-  function addPlaceholderToInputs(parentInput) {
-    const inputs = Array.from(parentInput.querySelectorAll('input'));
+    const placeholderText = input.name
+      ? input.name.charAt(0).toUpperCase() + input.name.slice(1)
+      : 'Field';
 
-    inputs.forEach((input) => {
-      const inputName = input.name;
-      const UpperFirstLetter =
-        inputName.charAt(0).toUpperCase() + inputName.slice(1);
-
-      input.setAttribute('placeholder', UpperFirstLetter);
-    });
-  }
-
-  fields.forEach((field) => addLabel(field));
-  fields.forEach((field) => addPlaceholderToInputs(field));
+    input.placeholder = placeholderText;
+  });
 });
